@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "hardhat/console.sol";
 
-// We need to import the helper functions from the contract that we copy/pasted.
+
 import {Base64} from "./libraries/Base64.sol";
 
 contract MyEpicNFT is ERC721URIStorage {
@@ -147,7 +147,7 @@ contract MyEpicNFT is ERC721URIStorage {
             )
         );
 
-        // Get all the JSON metadata in place and base64 encode it.
+        /// @notice: This retrieves all the JSON metadata in place and base64 encodes it.
         string memory json = Base64.encode(
             bytes(
                 string(
@@ -164,7 +164,7 @@ contract MyEpicNFT is ERC721URIStorage {
             )
         );
 
-        // Just like before, we prepend data:application/json;base64, to our data.
+        
         string memory finalTokenUri = string(
             abi.encodePacked("data:application/json;base64,", json)
         );
@@ -175,7 +175,7 @@ contract MyEpicNFT is ERC721URIStorage {
 
         _safeMint(msg.sender, newItemId);
 
-        // Update your URI!!!
+        
         _setTokenURI(newItemId, finalTokenUri);
 
         _tokenIds.increment();
